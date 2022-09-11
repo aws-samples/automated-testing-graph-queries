@@ -1,0 +1,55 @@
+host: 172.19.0.2
+port: 8182
+threadPoolWorker: 1
+gremlinPool: 8
+scriptEvaluationTimeout: 30000
+graphs: { graph1: ./conf_local/gremlin-graph-main.properties }
+scriptEngines: {
+  gremlin-groovy: {
+    plugins:{
+      org.apache.tinkerpop.gremlin.server.jsr223.GremlinServerGremlinPlugin: {},
+      org.apache.tinkerpop.gremlin.tinkergraph.jsr223.TinkerGraphGremlinPlugin: {},
+      org.apache.tinkerpop.gremlin.jsr223.ImportGremlinPlugin:{
+       classImports: [
+        java.lang.Math,
+        org.opencypher.gremlin.traversal.CustomFunctions,
+        org.opencypher.gremlin.traversal.CustomPredicate,
+      ],
+      methodImports: [
+        java.lang.Math#*,
+        org.opencypher.gremlin.traversal.CustomPredicate#*,
+        org.opencypher.gremlin.traversal.CustomFunctions#*,
+      ],
+    },
+      org.apache.tinkerpop.gremlin.jsr223.ScriptFileGremlinPlugin: { 
+        files: [./conf_local/gremlin-graph.groovy] 
+      },
+    },
+  },
+}
+serializers:
+  - {
+      className: org.apache.tinkerpop.gremlin.driver.ser.GryoMessageSerializerV3d0,
+      config: { ioRegistries: [org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerIoRegistryV3d0] },
+    } # application/vnd.gremlin-v3.0+gryo
+  - {
+      className: org.apache.tinkerpop.gremlin.driver.ser.GryoMessageSerializerV3d0,
+      config: { serializeResultToString: true },
+    } # application/vnd.gremlin-v3.0+gryo-stringd
+  - {
+      className: org.apache.tinkerpop.gremlin.driver.ser.GraphSONMessageSerializerV3d0,
+      config: { ioRegistries: [org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerIoRegistryV3d0] },
+    } # application/json                                                                                     $
+  - {
+      className: org.apache.tinkerpop.gremlin.driver.ser.GraphBinaryMessageSerializerV1,
+      config: { serializeResultToString: true },
+    }
+metrics: { slf4jReporter: { enabled: true, interval: 180000 } }
+strictTransactionManagement: false
+threadPoolBoss: 1
+maxInitialLineLength: 4096
+maxHeaderSize: 8192
+maxChunkSize: 8192
+maxContentLength: 65536
+maxAccumulationBufferComponents: 1024
+resultIterationBatchSize: 64

@@ -1,0 +1,9 @@
+version: '3.3'
+services:
+  gremlin-server:
+    build: .
+    volumes:
+      - ./test/db/conf:/opt/gremlin-server/conf_local
+    ports:
+      - 8182:8182
+    command: ./conf_local/gremlin-server.yaml
