@@ -9,7 +9,7 @@ executed entirely on a developers local environment, enabling functional testing
 are written to run against Amazon Neptune, outside of the cloud.
 
 The tests run against an Apache TinkerPop Gremlin Server (https://tinkerpop.apache.org/) which
-supports Gremlin queries.
+supports both Gremlin and openCypher queries.
 
 The tests load a set of test data to the graph before executing, which is a small subset
 of Kelvin Lawrence's air route data set (https://github.com/krlawrence/graph/tree/master/sample-data).
@@ -28,5 +28,5 @@ make test
 The test target will
 
 - Install dependencies
-- Start a docker container with a Gremlin Server database with the correct configuration to support Gremlin tests
+- Start a docker container with a Gremlin Server database with the correct configuration to support Gremlin and openCypher tests
 - Execute the test suites against the database
