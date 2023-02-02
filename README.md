@@ -2,7 +2,8 @@
 
 This repository provides an approach to the automated testing of queries that have been written to
 run against a property graph in Amazon Neptune. The code is written in Typescript, although the concept
-can be extended to any language that can query a property graph.
+can be extended to any language that can query a property graph. Details of the approach can be found 
+in this blog post https://aws.amazon.com/blogs/database/automated-testing-of-amazon-neptune-data-access-with-apache-tinkerpop-gremlin/ 
 
 The example code provided in this repository does not require any cloud resources to run, and can be 
 executed entirely on a developers local environment, enabling functional testing of graph queries that
@@ -16,6 +17,9 @@ of Kelvin Lawrence's air route data set (https://github.com/krlawrence/graph/tre
 The test data is illustrated below
 
 ![Test data](air_route_minimal.png)
+
+### Pre-requisites
+Before starting, ensure you have [Docker](https://www.docker.com/) installed and running and GNU make installed
 
 ### Running the tests
 
@@ -31,4 +35,11 @@ The test target will
 - Start a docker container with a Gremlin Server database with the correct configuration to support Neptune compatible
 Gremlin queries
 - Execute the test suites against the database
+
+### Extending the tests
+If you want to change the data in the test graph you can edit the graph definition in
+```
+test/dod.ts
+```
+
 
