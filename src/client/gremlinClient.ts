@@ -132,7 +132,7 @@ export class GremlinClient {
     properties: any = {}
   ): Promise<Edge | null> {
     try {
-      let write = this.g.V(fromVertexId).addE(label).to(this.g.V(toVertexId));
+      let write = this.g.V(fromVertexId).addE(label).to(__.V(toVertexId));
 
       Object.entries(properties || {}).forEach(([key, val]) => {
         if (typeof val === "object") {

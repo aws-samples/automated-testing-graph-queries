@@ -19,7 +19,7 @@ beforeEach(async () => {
 
 describe("GremlinClient", () => {
   describe("add a vertex", () => {
-    it("should successfully add a vertex", async () => {
+   it("should successfully add a vertex", async () => {
       const vertexId = uuidv4();
       const vertexLabel = uuidv4();
       const result = await g.addVertex(vertexId, vertexLabel, {
