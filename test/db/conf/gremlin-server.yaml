@@ -1,4 +1,4 @@
-host: localhost
+host: 172.19.0.2
 port: 8182
 threadPoolWorker: 1
 gremlinPool: 8
