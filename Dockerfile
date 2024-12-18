@@ -1,1 +1,1 @@
-FROM tinkerpop/gremlin-server:3.5.2
+FROM tinkerpop/gremlin-server:3.7.3

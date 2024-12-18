@@ -31,12 +31,8 @@ export class GremlinClient {
    * @param url the URL of the Gremlin endpoint to which to connect
    */
   public constructor(url: string) {
-    const config: any = {
-      traversalsource: "g",
-      mimeType: "application/vnd.gremlin-v3.0+json",
-    };
     this.graph = new structure.Graph();
-    this.dc = new driver.DriverRemoteConnection(url, config);
+    this.dc = new driver.DriverRemoteConnection(url, {});
     this.g = this.graph.traversal().withRemote(this.dc);
   }
 
@@ -132,7 +128,7 @@ export class GremlinClient {
     properties: any = {}
   ): Promise<Edge | null> {
     try {
-      let write = this.g.V(fromVertexId).addE(label).to(this.g.V(toVertexId));
+      let write = this.g.V(fromVertexId).addE(label).to(__.V(toVertexId));
 
       Object.entries(properties || {}).forEach(([key, val]) => {
         if (typeof val === "object") {

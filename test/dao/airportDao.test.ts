@@ -23,12 +23,16 @@ describe("AirportDao", () => {
   describe("get all airports", () => {
     it("should get all the airports", async () => {
       const allAirports = await airportInterface.getAllAirports();
+      expect(allAirports).not.toEqual(null);
+      expect(allAirports.length).toBe(16);
     });
   });
 
   describe("get all routes between two airports", () => {
     it("should get all the routes between HRE and JNB", async () => {
       const allRoutes = await airportInterface.getRoutes("HRE", "JNB");
+      expect(allRoutes).not.toEqual(null);
+      expect(allRoutes.length).toBe(3);
     });
   });
 });
