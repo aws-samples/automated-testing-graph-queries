@@ -11,7 +11,7 @@ build: clean
 test: build quick-test
 
 quick-test:
-	docker compose up --build -d
+	docker compose up -d
 	#TODO: There should be a better way to wait for the database to be available
 	sleep 10 
 	npm run test

@@ -13,9 +13,15 @@ scriptEngines:
         files:
           - ./conf_local/gremlin-graph.groovy
 serializers:
-  - { className: org.apache.tinkerpop.gremlin.util.ser.GraphSONMessageSerializerV3, config: { ioRegistries: [org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerIoRegistryV3] }}            # application/json
-  - { className: org.apache.tinkerpop.gremlin.util.ser.GraphBinaryMessageSerializerV1 }                                                                                                           # application/vnd.graphbinary-v1.0
-  - { className: org.apache.tinkerpop.gremlin.util.ser.GraphBinaryMessageSerializerV1, config: { serializeResultToString: true }}                                                                 # application/vnd.graphbinary-v1.0-stringd
+  - className: org.apache.tinkerpop.gremlin.util.ser.GraphSONMessageSerializerV3
+    config: 
+      ioRegistries: 
+        - >-
+          org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerIoRegistryV3
+  - className: org.apache.tinkerpop.gremlin.util.ser.GraphBinaryMessageSerializerV1
+  - className: org.apache.tinkerpop.gremlin.util.ser.GraphBinaryMessageSerializerV1
+    config: 
+      serializeResultToString: true
 metrics:
   slf4jReporter:
     enabled: true
